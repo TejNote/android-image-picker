@@ -75,9 +75,7 @@ public class ImagePickerAdapter extends BaseListAdapter<ImagePickerAdapter.Image
                 ? View.VISIBLE
                 : View.GONE);
 
-        viewHolder.alphaView.setAlpha(isSelected
-                ? 0.5f
-                : 0f);
+        viewHolder.alphaView.setAlpha(isSelected ? 0.5f : 0f);
 
         viewHolder.itemView.setOnClickListener(v -> {
             boolean shouldSelect = itemClickListener.onImageClick(
@@ -85,9 +83,9 @@ public class ImagePickerAdapter extends BaseListAdapter<ImagePickerAdapter.Image
             );
 
             if (isSelected) {
-                removeSelectedImage(image, position);
+                removeSelectedImage(image);
             } else if (shouldSelect) {
-                addSelected(image, position);
+                addSelected(image);
             }
         });
 
@@ -116,17 +114,37 @@ public class ImagePickerAdapter extends BaseListAdapter<ImagePickerAdapter.Image
         this.images.addAll(images);
     }
 
-    private void addSelected(final Image image, final int position) {
+    public void addSelected(final Image image) {
         mutateSelection(() -> {
             selectedImages.add(image);
-            notifyItemChanged(position);
+            int changedPosition = -1;
+            for(int i = 0; i < images.size(); i++){
+                Image temp = images.get(i);
+                if(temp.getPath().equals(image.getPath())){
+                    changedPosition = i;
+                }
+            }
+
+            if(changedPosition >= 0) {
+                notifyItemChanged(changedPosition);
+            }
         });
     }
 
-    private void removeSelectedImage(final Image image, final int position) {
+    public void removeSelectedImage(final Image image) {
         mutateSelection(() -> {
             selectedImages.remove(image);
-            notifyItemChanged(position);
+            int changedPosition = -1;
+            for(int i = 0; i < images.size(); i++){
+                Image temp = images.get(i);
+                if(temp.getPath().equals(image.getPath())){
+                    changedPosition = i;
+                }
+            }
+
+            if(changedPosition >= 0) {
+                notifyItemChanged(changedPosition);
+            }
         });
     }
 

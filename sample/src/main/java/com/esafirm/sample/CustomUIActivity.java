@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.esafirm.imagepicker.features.ImagePickerConfig;
@@ -150,6 +151,15 @@ public class CustomUIActivity extends AppCompatActivity {
         }
 
         photoPreview = findViewById(R.id.photo_preview);
+
+        findViewById(R.id.activity_custom_ui_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                if(imagePickerFragment.getSelectedImages().size() > 0){
+                    imagePickerFragment.removeSelectedImage(imagePickerFragment.getSelectedImages().get(0));
+                }
+            }
+        });
     }
 
     class CustomInteractionListener implements ImagePickerInteractionListener {

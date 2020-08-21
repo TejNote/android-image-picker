@@ -182,6 +182,18 @@ public class ImagePickerFragment extends Fragment implements ImagePickerView {
         snackBarView = rootView.findViewById(R.id.ef_snackbar);
     }
 
+    public void addSelected(final Image image) {
+        recyclerViewManager.addSelected(image);
+    }
+
+    public void removeSelectedImage(final Image image) {
+        recyclerViewManager.removeSelectedImage(image);
+    }
+
+    public List<Image> getSelectedImages() {
+        return recyclerViewManager.getSelectedImages();
+    }
+
     private void setupRecyclerView(ImagePickerConfig config, ArrayList<Image> selectedImages) {
         recyclerViewManager = new RecyclerViewManager(
                 recyclerView,

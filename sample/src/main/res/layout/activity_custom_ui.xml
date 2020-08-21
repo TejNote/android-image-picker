@@ -17,11 +17,12 @@
         android:layout_below="@id/toolbar"
         android:orientation="vertical"
         android:weightSum="100">
+
         <ImageView
             android:id="@+id/photo_preview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="50"
+            android:layout_weight="40"
             android:contentDescription="Preview of selected photo"
             android:scaleType="fitCenter" />
         <FrameLayout
@@ -29,6 +30,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="50"/>
+
+        <Button
+            android:id="@+id/activity_custom_ui_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Item Remove"/>
 
     </LinearLayout>
 

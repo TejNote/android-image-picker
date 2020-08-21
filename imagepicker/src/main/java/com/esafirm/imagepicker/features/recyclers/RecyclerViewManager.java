@@ -91,6 +91,7 @@ public class RecyclerViewManager {
         });
     }
 
+
     private void setItemDecoration(int columns) {
         if (itemOffsetDecoration != null) {
             recyclerView.removeItemDecoration(itemOffsetDecoration);
@@ -193,6 +194,16 @@ public class RecyclerViewManager {
         return !isDisplayingFolderView()
                 && !imageAdapter.getSelectedImages().isEmpty()
                 && (config.getReturnMode() != ReturnMode.ALL && config.getReturnMode() != ReturnMode.GALLERY_ONLY);
+    }
+
+    public void addSelected(final Image image) {
+        checkAdapterIsInitialized();
+        imageAdapter.addSelected(image);
+    }
+
+    public void removeSelectedImage(final Image image) {
+        checkAdapterIsInitialized();
+        imageAdapter.removeSelectedImage(image);
     }
 
 }
